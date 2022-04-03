@@ -11,35 +11,30 @@
 # **************************************************************************** #
 
 CC = gcc
-
 CFLAGS = -Wall -Wextra -Werror
-
 RM = rm -f
-
 CFILES = server.c client.c
-
 OBJS = $(CFILES:.c=.o)
-
 LIBFT = libft.a
+LIBS = -L./libft -lft
 
-NAME = server client $(LIBFT)
-
-all: $(NAME)
+all: $(LIBFT) server client
 
 $(LIBFT) : 
 	@make -C libft
 
-server: server.o libft
-	$(CC) $(CFLAGS) -o $@ $< -L./libft -lft
+server : server.o
+	$(CC) $(CFLAGS) server.o $(LIBS) -o server
 
-client: client.o libft
-	$(CC) $(CFLAGS) -o $@ $< -L./libft -lft
+client : client.o 
+	$(CC) $(CFLAGS) client.o $(LIBS) -o client
 
 clean:
-	rm -f $(OBJS)
-	make -C libft clean
+	$(RM) $(OBJS)
+	@make clean -C libft
 	
 fclean: clean
-	rm -f $(NAME) libft/libft.a
+	@make fclean -C libft
+	$(RM) server client
 
 re: fclean all
