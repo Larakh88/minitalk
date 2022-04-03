@@ -11,23 +11,37 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
+#include <signal.h>
+#include "libft/libft.h"
 
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putstr_fd(char *s, int fd);
+static void    hdl(int sig)
+{
+	static int	i;
+	int		j;
+	static char	c;
 
-//static void    hdl(int sig)
-//{
-//
-//}
+	i++;
+	j = 8 - i;
+	if (sig == SIGUSR2)
+		c = 128 >> j | c;
+	if (sig == SIGUSR1)
+		c = c | 0;
+	if (j == 0)
+	{
+		ft_putchar_fd(c, 1);
+		c = 0;
+		i = 0;
+	}
+}
+
 int	main(void)
 {
-	struct sigaction	a;
-
 	ft_putstr_fd("PID: ", 1);
 	ft_putnbr_fd(getpid(), 1);
 	ft_putstr_fd("\n", 1);
-	a.sa_handler = hdl;
-	sigaction(SIGUSR1, &a, NULL);
-	sigaction(SIGUSR2, &a, NULL);
-	pause();
+	signal(SIGUSR1, hdl);
+	signal(SIGUSR2, hdl);
+	while (1)
+		pause();
 }
