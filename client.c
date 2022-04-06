@@ -6,7 +6,7 @@
 /*   By: lel-khou <lel-khou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:12:26 by lel-khou          #+#    #+#             */
-/*   Updated: 2022/04/01 14:28:16 by lel-khou         ###   ########.fr       */
+/*   Updated: 2022/04/06 09:48:13 by lel-khou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 static void	action(int pid, char *str)
 {
-	int	i;
+	int		i;
 	char	c;
-	int	j;
+	int		j;
 
 	i = 0;
 	while (str[i] != 0)

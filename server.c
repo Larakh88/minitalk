@@ -6,7 +6,7 @@
 /*   By: lel-khou <lel-khou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:12:19 by lel-khou          #+#    #+#             */
-/*   Updated: 2022/04/01 14:28:20 by lel-khou         ###   ########.fr       */
+/*   Updated: 2022/04/06 09:49:00 by lel-khou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include <signal.h>
 #include "libft/libft.h"
 
-static void    hdl(int sig)
+static void	hdl(int sig)
 {
 	static int	i;
-	int		j;
+	int			j;
 	static char	c;
 
 	i++;
